@@ -1,0 +1,1200 @@
+{
+	"info": {
+		"_postman_id": "ff7d7c95-32f5-49d0-bcda-65a387c8c04d",
+		"name": "Neo4J File Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "setup",
+			"item": [
+				{
+					"name": "Root",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"pm.globals.set(\"root_id\", data[0].id)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/folder?q=/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"folder"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "/"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Root Files",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"for (folder of data) {",
+									"    pm.globals.set(folder.name, folder.id)",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/folder/{{root_id}}/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"folder",
+								"{{root_id}}",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Folder 1 files",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"for (folder of data) {",
+									"    pm.globals.set(folder.name, folder.id)",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/folder/{{folder1}}/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"folder",
+								"{{folder1}}",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Folder 3 files",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"for (folder of data) {",
+									"    pm.globals.set(folder.name, folder.id)",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/folder/{{folder3}}/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"folder",
+								"{{folder3}}",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Folder 3.32 files",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"for (folder of data) {",
+									"    pm.globals.set(folder.name, folder.id)",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/folder/{{folder32}}/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"folder",
+								"{{folder32}}",
+								"files"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Folder 3.32.1 files",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"for (folder of data) {",
+									"    pm.globals.set(folder.name, folder.id)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/folder/{{folder321}}/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"folder",
+								"{{folder321}}",
+								"files"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create",
+			"item": [
+				{
+					"name": "Create Folder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"pm.globals.set(\"folder_id\", data.id)"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"folder\": \"{{root_id}}\",\n    \"name\": \"{{$randomAdjective}} Folder\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/folder",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"folder"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "{{$randomAdjective}} Folder",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload File to Folder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"pm.globals.set(data.name, data.id)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/massi/Desktop/test_files/Image1.jpg"
+								},
+								{
+									"key": "folderId",
+									"value": "{{folder_id}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload File to /folder11",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"pm.globals.set(data.name, data.id)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/massi/Desktop/test_files/Image2.jpg"
+								},
+								{
+									"key": "folderId",
+									"value": "{{folder3}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload File to /folder3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"pm.globals.set(data.name, data.id)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/massi/Desktop/test_files/document.pdf"
+								},
+								{
+									"key": "folderId",
+									"value": "{{folder3}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload File to /folder321",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var file = pm.response.json();",
+									"pm.globals.set(file.name, file.id)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/massi/Desktop/test_files/Image3.jpg"
+								},
+								{
+									"key": "folderId",
+									"value": "{{folder321}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload File to /folder321",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var file = pm.response.json();",
+									"pm.globals.set(file.name, file.id)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/massi/Desktop/test_files/boq1.x83"
+								},
+								{
+									"key": "folderId",
+									"value": "{{folder321}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload File to /folder322",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json();",
+									"pm.globals.set(data.name, data.id)",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/massi/Desktop/test_files/boq2.x83"
+								},
+								{
+									"key": "folderId",
+									"value": "{{folder322}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"file"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Folder By Path /folder3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{root_id}}/files?path=/folder3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{root_id}}",
+						"files"
+					],
+					"query": [
+						{
+							"key": "path",
+							"value": "/folder3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Folder By Path /folder3/folder32/folder321",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{root_id}}/files?path=/folder3/folder32/folder321",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{root_id}}",
+						"files"
+					],
+					"query": [
+						{
+							"key": "path",
+							"value": "/folder3/folder32/folder321"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Folder By Path /folder1/folder32/folder321",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{root_id}}/files?path=/folder1/folder32/folder321",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{root_id}}",
+						"files"
+					],
+					"query": [
+						{
+							"key": "path",
+							"value": "/folder1/folder32/folder321"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rename File",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"new_Image1.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/file/{{Image1.jpg}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"file",
+						"{{Image1.jpg}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rename Folder",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"folder11B\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{folder11}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{folder11}}"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "rename",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Folder Files",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();",
+							"for (folder of data) {",
+							"    pm.globals.set(folder.name, folder.id)",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{folder_id}}/files",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{folder_id}}",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "File from Folder",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/file/{{Image1.jpg}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"file",
+						"{{Image1.jpg}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Folder Deleted Files",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();",
+							"for (folder of data) {",
+							"    pm.globals.set(folder.name, folder.id)",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{folder_id}}/files?deleted=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{folder_id}}",
+						"files"
+					],
+					"query": [
+						{
+							"key": "deleted",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Folder from Folder",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{folder_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{folder_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move File",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"folder\": \"{{folder1}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/file/{{document.pdf}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"file",
+						"{{document.pdf}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move Folder",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"folder\": \"{{folder1}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{folder32}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{folder32}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search In Root",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();",
+							"for (folder of data) {",
+							"    pm.globals.set(folder.name, folder.id)",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{root_id}}/files?q=image",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{root_id}}",
+						"files"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "image"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Tender Folder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();",
+							"pm.globals.set(\"tender_id\", data.id)"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{$randomAdjective}} Tender\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/folder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attach File",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{tender_id}}/attachments/{{boq1.x83}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{tender_id}}",
+						"attachments",
+						"{{boq1.x83}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attach Folder",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"folder\": \"{{tender_id}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{tender_id}}/attachments/{{folder321}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{tender_id}}",
+						"attachments",
+						"{{folder321}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tender Attachments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();",
+							"for (folder of data) {",
+							"    pm.globals.set(folder.name, folder.id)",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{tender_id}}/files",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{tender_id}}",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search In Tender",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();",
+							"for (folder of data) {",
+							"    pm.globals.set(folder.name, folder.id)",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{tender_id}}/files?q=boq",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{tender_id}}",
+						"files"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "boq"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detach File",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{tender_id}}/attachments/{{boq1.x83}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{tender_id}}",
+						"attachments",
+						"{{boq1.x83}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detach Folder",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/folder/{{tender_id}}/attachments/{{folder321}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"folder",
+						"{{tender_id}}",
+						"attachments",
+						"{{folder321}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

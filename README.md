@@ -34,7 +34,7 @@ Run the service in intellij. No Extra configuration needed
 
 ### Test
 
-To test, use the Postman collection [here]()
+To test, use the Postman collection [here](postman/Neo4J File Manager.postman_collection.json)
 
 To set up Postman variables, run all the request in folder Setup and Create
 
@@ -146,6 +146,8 @@ curl --location --request PUT 'http://localhost:8080/api/folder/cb8dc356-9921-4b
 curl --location --request DELETE 'http://localhost:8080/api/folder/cc82fdc7-ddd0-471b-adaa-488d3ee026ba'
 ```
 
+List of allowed operation are in the Postman collection [here](postman/File Manager API.postman_collection.json)
+
 ## Extra 
 
-a custom annotation `HasAccessTo` has been created (in Java) to check for user's permission to access specific resources.
+a custom annotation `HasAccessToFile` `HasAccessToFolder` has been created (in Java) to check for user's permission to access specific resources.
